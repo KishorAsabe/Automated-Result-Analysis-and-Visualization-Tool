@@ -60,6 +60,9 @@ def replace_subject_codes_with_names(subject_code):
         344451: 'COMP. NET. & SEC ',
         '314459B': 'LEAD. & PERSONALITY DEV.',
 
+        # SE
+        247003: 'ENGINEERING MATHEMATICS-III lab',
+
     }
 
     # Return the corresponding name if found in the dictionary, otherwise return the code itself
