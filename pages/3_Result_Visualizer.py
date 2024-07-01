@@ -396,17 +396,57 @@ def main():
         with st.expander("Result Analysis Visualization", expanded=True):
             try:
                 if len(result_analysis_df) > 0:
-                    # colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728',
-                    #           '#9467bd', '#8c564b', '#e377c2', '#7f7f7f']
-                    # colors = ['#FFD700', '#F4A460','#FF7F50',  '#FF6347', '#87CEEB', '#4169E1', '#9370DB', '#20B2AA']
-                    colors = [        '#0000CD',  # Dark blue (Primary color)
-    '#4169E1',  # Dark blue (Cold tone)
-    '#1155CC',  # Blue (Cold tone)
-    '#1E90FF',  # Dodger blue (Cold tone)
-    '#6AA6FF',  # Light sky blue (Cold tone)
-    '#ADD8E6',  # Light blue (Cold tone)
-    '#87CEFA',  # Light sky blue (Warm tone)
-    '#B0E0E6'  ]
+                   
+ 
+#                     colors = [
+    
+#     #  '#F4C145',
+#     '#8BC1F7',  # Light Blue
+   
+#     # '#009596',
+#     '#BDE2B9',  # Light Green
+#     '#519DE9',  # Medium Blue
+#     '#7CC674',  # Medium Green
+#     '#8481DD',  # Medium Purple
+#     '#06C',     # Dark Blue
+#     '#4CB140'   # Dark Green
+# ]
+
+
+# purple family
+#                     colors = [
+#     '#B2B0EA',  # Light Purple
+#     '#8481DD',  # Medium Light Purple
+#     '#5752D1',  # Medium Purple
+#     '#3C3D99',  # Medium Dark Purple
+#     '#2A265F',  # Dark Purple
+#     '#1E1A45'   # Extra Dark Purple (added shade)
+# ]
+
+
+# gold family 
+#                     colors = [
+#     '#F9E0A2',  # Light Gold
+#     '#F6D173',  # Medium Light Gold
+#     '#F4C145',  # Medium Gold
+#     '#F0AB00',  # Medium Dark Gold
+#     '#C58C00',  # Dark Gold
+#     '#8F6F00'   # Extra Dark Gold (added shade)
+# ]
+
+# blue family
+                    colors = [
+    '#8BC1F7',  # Blue 100
+    '#519DE9',  # Blue 200
+    '#06C',     # Blue 300
+    '#004B95',  # Blue 400
+    '#002F5D',  # Blue 500
+    '#001833'   # Extra Dark Blue (added shade)
+]
+
+
+
+
 
 
                     total_students = result_analysis_df.loc[0,
@@ -416,7 +456,7 @@ def main():
                     fail_students = result_analysis_df.loc[2, 'No of Students']
 
                     # Create pie chart for each category
-                    for i, (start, end, title) in enumerate([(1, 3, 'Student Distribution'), (2, 7, 'Class Categories')]):
+                    for i, (start, end, title) in enumerate([(1, 3, 'Student Distribution'), (1, 6, 'Class Categories')]):
                         fig, ax = plt.subplots(figsize=(10, 6))
                         
                         sorted_data = result_analysis_df.loc[start:end-1].sort_values(by='No of Students', ascending=False)
@@ -425,13 +465,7 @@ def main():
                             startangle=90,
                             colors=colors[start:end],
                             wedgeprops=dict(edgecolor='w'),)
-                        # wedges, texts = ax.pie(
-                        #     result_analysis_df.loc[start:end -
-                        #                            1, 'No of Students'],
-                        #     startangle=90,
-                        #     colors=colors[start:end],
-                        #     wedgeprops=dict(edgecolor='w'),
-                        # )
+                       
                         ax.axis('equal')
                         # Add padding to the title
                         ax.set_title(title, fontsize=16,
@@ -456,7 +490,7 @@ def main():
                                 {'Particulars': ['Total Students'], 'No of Students': [total_students]})
                             data = pd.concat(
                                 [total_row, data], ignore_index=True)
-                        data['Percentage'] = (data['No of Students'].astype(
+                        data['Percentage %'] = (data['No of Students'].astype(
                             float) / total_students * 100).round(2)
                         ax.table(cellText=data.values,
                                  colLabels=data.columns,
@@ -465,40 +499,6 @@ def main():
                                  bbox=[0, -0.4, 1, 0.3])  # Adjust table position and size
 
                         st.pyplot(fig)
-
-                    # backlog_colors = ['#FF9999',
-                    #                   '#66B2FF', '#99FF99', '#FFCC99']
-
-                    # fig, ax = plt.subplots(figsize=(10, 6))
-                    # wedges, texts = ax.pie(
-                    #     result_analysis_df.loc[7:, 'No of Students'],
-                    #     startangle=90,
-                    #     colors=backlog_colors,
-                    #     wedgeprops=dict(edgecolor='w'),
-                    # )
-                    # ax.axis('equal')
-                    # # Add padding to the title
-                    # ax.set_title('Backlogs', fontsize=16,
-                    #              fontweight='bold', pad=40)
-
-                    # # Add a legend for the last pie chart
-                    # ax.legend(wedges, result_analysis_df.loc[7:, 'Particulars'],
-                    #           title="Particulars", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
-                    # # Adjust layout to make room for the legend
-                    # plt.subplots_adjust(right=0.7)
-
-                    # # Add a table for the last pie chart
-                    # data_backlogs = result_analysis_df.loc[7:, [
-                    #     'Particulars', 'No of Students']]
-                    # data_backlogs['Percentage'] = (data_backlogs['No of Students'].astype(
-                    #     float) / total_students * 100).round(2)
-                    # ax.table(cellText=data_backlogs.values,
-                    #          colLabels=data_backlogs.columns,
-                    #          cellLoc='center',
-                    #          loc='bottom',
-                    #          bbox=[0, -0.4, 1, 0.3])  # Adjust table position and size
-
-                    # st.pyplot(fig)
 
             except Exception as e:
                 st.error(f'Error occurred while loading the data: {str(e)}')
