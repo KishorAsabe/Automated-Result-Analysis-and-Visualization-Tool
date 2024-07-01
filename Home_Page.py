@@ -1,6 +1,11 @@
 
 import streamlit as st
 
+st.set_page_config(
+    page_title='Result Analysis',
+    page_icon='📃'
+)
+
 # Add main title without splitting and apply custom CSS class
 st.markdown(
     """
@@ -112,3 +117,31 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+if __name__ == "__main__":
+
+    with st.sidebar:
+        st.header('Our Contributors')
+
+        import streamlit as st
+
+        st.markdown(
+            """
+            <style>
+                /* Add CSS styles here */
+                .avatar-container {
+                    display: inline-block;
+                    margin-right: 20px; /* Adjust the margin to your desired spacing */
+                }
+            </style>
+
+            <div class="avatar-container">
+                <a href="https://github.com/SaTyle/merit-matrix/graphs/contributors">
+                    <img src="https://contrib.rocks/image?max=50&repo=SaTyle/merit-matrix" />
+                </a>
+            </div>
+
+
+            """,
+            unsafe_allow_html=True
+        )

@@ -2,6 +2,11 @@ import streamlit as st
 import smtplib
 
 
+st.set_page_config(
+    page_title='Result Analysis',
+    page_icon='📃'
+)
+
 # Details how to use the app
 
 def app():
@@ -19,30 +24,12 @@ def app():
     6.Download CSV/Excel files 
      """)
 
-    # st.code("""Que 3: How to convert Excel to CSV?
-    # Ans: To convert Excel to CSV, follow the steps below:
-    # 1. Click on the Excel to CSV button on the sidebar
-    # 2. Upload the Excel file
-    # 3. Click on the Download CSV button to download the converted file.""")
-
     st.code("""Que 2: How to convert PDF to Excel?
     Ans: To convert PDF to Excel, follow the steps below:
     1. Click On the Result Convertor button on the sidebar
     2. Upload the PDF file
     3. Click On  Download student Marks in Excel/csv file Accordian
     4. Click On Submit Button to download students marks.""")
-
-    # st.code("""Que 5: How to convert Text to PDF?
-    # Ans: To convert Text to PDF, follow the steps below:
-    # 1. Click on the Text to PDF button on the sidebar
-    # 2. Upload the Text file
-    # 3. Click on the Download PDF button to download the converted file.""")
-
-    # st.code("""Que 6: How to convert Word to PDF?
-    # Ans: To convert Word to PDF, follow the steps below:
-    # 1. Click on the Word to PDF button on the sidebar
-    # 2. Upload the Word file
-    # 3. Click on the Download PDF button to download the converted file.""")
 
     st.code("""Que 3: How to contact the developer?
     Ans: You can contact the developer at:
@@ -65,22 +52,10 @@ def app():
     1. Creating an issue on GitHub
     2. Mentioning the feature in the issue""")
 
-    # st.code("""Que 11: How to get the source code?
-    # Ans: You can get the source code by:
-    # 1. Forking the project
-    # 2. Cloning the project""")
-
     st.code("""Que 7: How to get the latest updates?
     Ans: You can get the latest updates by:
     1. Forking the project
     2. Pulling the latest changes from the main branch""")
-
-
-    # st.code("""Que 14: How to get support?
-    # Ans: contact the developer at:
-    # 1. Email: surajpisal113@gmail.com.
-    # 2.Emial: vikrammarkali007@gmail.com
-    # 3.Email: durgeshmahajan1722@gmail.com""")
 
     st.code("""Que 8: Why should I use this app?
     Ans: You should use this app because:
@@ -116,22 +91,65 @@ def app():
 
 
     # form to get feedback from the user
-    st.title('Feedback')
-    with st.form('feedback_form'):
-        name = st.text_input('Name')
-        email = st.text_input('Email')
-        feedback = st.text_area('Feedback')
-        submit = st.form_submit_button('Submit')
+    
+OWN_EMAIL = 'smartdeveloper18@gmail.com'
+OWN_PASSWORD = 'hmurflgozwclflwu'  # Replace with your app password
 
-    if submit:
-        try:
-            smtpObj = smtplib.SMTP('localhost')
-            smtpObj.sendmail(email,'kishorasabe2020@gmail.com',feedback)         
-            st.success('Email sent successfully')
-        except Exception as e:
-            pass 
-        st.success('Feedback submitted successfully')
+
+def send_email(fname, email, phone, message):
+    email_message = f"Subject: New Feedback\n\nFull Name: {fname}\nEmail: {email}\nPhone: {phone}\nMessage: {message}"
+    with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+        connection.set_debuglevel(1)  # Enable debugging
+        connection.starttls()
+        connection.login(OWN_EMAIL, OWN_PASSWORD)
+        connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
+
+
+st.title('Feedback')
+
+with st.form('feedback_form'):
+    name = st.text_input('Name')
+    email = st.text_input('Email')
+    phone = st.text_input('Phone')
+    feedback = st.text_area('Feedback')
+    submit = st.form_submit_button('Submit')
+
+if submit:
+    try:
+        send_email(name, email, phone, feedback)
+        st.success('Email sent successfully')
         st.balloons()
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
+
+
+
+
+
+with st.sidebar:
+    st.header('Our Contributors')
+
+
+    st.markdown(
+        """
+        <style>
+            /* Add CSS styles here */
+            .avatar-container {
+                display: inline-block;
+                margin-right: 20px; /* Adjust the margin to your desired spacing */
+            }
+        </style>
+
+        <div class="avatar-container">
+            <a href="https://github.com/SaTyle/merit-matrix/graphs/contributors">
+                <img src="https://contrib.rocks/image?max=50&repo=SaTyle/merit-matrix" />
+            </a>
+        </div>
+
+
+        """,
+        unsafe_allow_html=True
+    )
 
 app()

@@ -1,18 +1,21 @@
 import smtplib
 import streamlit as st
 
-OWN_EMAIL = 'knowndetails2003@gmail.com'
-OWN_PASSWORD = 'rztiqthlgzkmevpe'
+OWN_EMAIL = 'smartdeveloper18@gmail.com'
+OWN_PASSWORD = 'hmurflgozwclflwu'  # Replace with your app password
 
 
 def send_email(fname, email, phone, message):
-    email_message = f"Subject: New Message \n\nFull Name: {fname}\nEmail:{email}\nPhone:{phone}\nMessage:{message}"
-    with smtplib.SMTP("smtp.gmail.com") as connection:
+    email_message = f"Subject: New Feedback\n\nFull Name: {fname}\nEmail: {email}\nPhone: {phone}\nMessage: {message}"
+    with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+        connection.set_debuglevel(1)  # Enable debugging
         connection.starttls()
         connection.login(OWN_EMAIL, OWN_PASSWORD)
         connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
+
 st.title('Feedback')
+
 with st.form('feedback_form'):
     name = st.text_input('Name')
     email = st.text_input('Email')
@@ -24,8 +27,6 @@ if submit:
     try:
         send_email(name, email, phone, feedback)
         st.success('Email sent successfully')
+        st.balloons()
     except Exception as e:
         st.error(f"An error occurred: {e}")
-else:
-    st.success('Feedback submitted successfully')
-    st.balloons()
