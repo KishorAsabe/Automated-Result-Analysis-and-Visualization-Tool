@@ -19,11 +19,6 @@ def app():
     6.Download CSV/Excel files 
      """)
 
-    # st.code("""Que 3: How to convert Excel to CSV?
-    # Ans: To convert Excel to CSV, follow the steps below:
-    # 1. Click on the Excel to CSV button on the sidebar
-    # 2. Upload the Excel file
-    # 3. Click on the Download CSV button to download the converted file.""")
 
     st.code("""Que 2: How to convert PDF to Excel?
     Ans: To convert PDF to Excel, follow the steps below:
@@ -32,17 +27,7 @@ def app():
     3. Click On  Download student Marks in Excel/csv file Accordian
     4. Click On Submit Button to download students marks.""")
 
-    # st.code("""Que 5: How to convert Text to PDF?
-    # Ans: To convert Text to PDF, follow the steps below:
-    # 1. Click on the Text to PDF button on the sidebar
-    # 2. Upload the Text file
-    # 3. Click on the Download PDF button to download the converted file.""")
-
-    # st.code("""Que 6: How to convert Word to PDF?
-    # Ans: To convert Word to PDF, follow the steps below:
-    # 1. Click on the Word to PDF button on the sidebar
-    # 2. Upload the Word file
-    # 3. Click on the Download PDF button to download the converted file.""")
+  
 
     st.code("""Que 3: How to contact the developer?
     Ans: You can contact the developer at:
@@ -65,22 +50,14 @@ def app():
     1. Creating an issue on GitHub
     2. Mentioning the feature in the issue""")
 
-    # st.code("""Que 11: How to get the source code?
-    # Ans: You can get the source code by:
-    # 1. Forking the project
-    # 2. Cloning the project""")
-
+    
     st.code("""Que 7: How to get the latest updates?
     Ans: You can get the latest updates by:
     1. Forking the project
     2. Pulling the latest changes from the main branch""")
 
 
-    # st.code("""Que 14: How to get support?
-    # Ans: contact the developer at:
-    # 1. Email: surajpisal113@gmail.com.
-    # 2.Emial: vikrammarkali007@gmail.com
-    # 3.Email: durgeshmahajan1722@gmail.com""")
+
 
     st.code("""Que 8: Why should I use this app?
     Ans: You should use this app because:
